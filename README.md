@@ -3,6 +3,5 @@ Electric Car Traveler
 
 Group members:
 
-Ada Lovelace adalovelace@csu.fullerton.edu
+Jayraj Arora jayraj.arora@csu.fullerton.edu
 
-Charles Babbage charlesbab@csu.fullerton.edu
