@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
@@ -22,46 +21,48 @@ public class ElectricCarTraveller {
      *
      * @see DistanceNode
      * @param args string arguments
-     * @throws IOException exception to be caught when taking an input from input stream
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.print("Please enter the range of the car: ");
+            int C = Integer.parseInt(reader.readLine());
 
-        System.out.print("Please enter the range of the car: ");
-        int C = Integer.parseInt(reader.readLine());
+            System.out.print("Please enter the number of cities travelled by electric car: ");
+            int n = Integer.parseInt(reader.readLine());
 
-        System.out.print("Please enter the number of cities travelled by electric car: ");
-        int n = Integer.parseInt(reader.readLine());
+            // n-1 distances taken as n cities will have n-1 distances between them, distances are edges between cities
+            int[] distances = new int[n - 1];
 
-        // n-1 distances taken as n cities will have n-1 distances between them, distances are edges between cities
-        int[] distances = new int[n-1];
+            System.out.println("Please enter the list of distances between the cities: ");
+            // reading distances between cities from the input stream
+            for (int i = 0; i < n - 1; i++) {
+                System.out.print("Please enter the distance from " + cities[i] + " -> " + cities[i + 1] + ": ");
+                distances[i] = Integer.parseInt(reader.readLine());
+            }
+            // preparing the linked list, adding the first node (A | 0)
+            DistanceNode head = new DistanceNode(cities[0], 0);
 
-        System.out.println("Please enter the list of distances between the cities: ");
-        // reading distances between cities from the input stream
-        for(int i = 0; i < n-1; i++) {
-            System.out.print("Please enter the distance from " + cities[i] + " -> " + cities[i+1] + ": ");
-            distances[i] = Integer.parseInt(reader.readLine());
+            // pointer that points to the current node and links new pointers
+            DistanceNode cur = head;
+
+            for (int i = 1; i < n; i++) {
+                // adding cities and its weights to generate a weighted graph
+                DistanceNode newNode = new DistanceNode(cities[i], distances[i - 1]);
+
+                // linking nodes
+                cur.next = newNode;
+                newNode.previous = cur;
+                // making the new node as current code
+                cur = cur.next;
+            }
+
+            // returned ArrayList of stops
+            ArrayList<Character> stops = minimizeStops(C, head);
+            System.out.println("Minimal number of stops is : " + stops);
+        } catch (Exception e) {
+            System.out.println("Please enter valid inputs. Exception cause: " + e.getMessage());
         }
-        // preparing the linked list, adding the first node (A | 0)
-        DistanceNode head = new DistanceNode(cities[0], 0);
-
-        // pointer that points to the current node and links new pointers
-        DistanceNode cur = head;
-
-        for(int i=1; i<n; i++) {
-            // adding cities and its weights to generate a weighted graph
-            DistanceNode newNode = new DistanceNode(cities[i], distances[i-1]);
-
-            // linking nodes
-            cur.next = newNode;
-            newNode.previous = cur;
-            // making the new node as current code
-            cur = cur.next;
-        }
-
-        // returned ArrayList of stops
-        ArrayList<Character> stops = minimizeStops(C, head);
-        System.out.println("Minimal number of stops is : " + stops);
     }
 
     /**
