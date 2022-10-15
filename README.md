@@ -1,13 +1,13 @@
 # 535-project-1
-Electric Car Traveler
+### Electric Car Traveler
 
-Project Submission by the following group members:
+Group Members:
 
-Jayraj Arora  Email: jayraj.arora@csu.fullerton.edu
+- Jayraj Arora Email: jayraj.arora@csu.fullerton.edu
 
-Manan Hasmukhbhai Patel   Email: mananpatel@csu.fullerton.edu
+- Manan Hasmukhbhai Patel   Email: mananpatel@csu.fullerton.edu
 
-Sravani Kallempudi   Email: sravanik@csu.fullerton.edu
+- Sravani Kallempudi   Email: sravanik@csu.fullerton.edu
 
 Problem Defintion: 
 
